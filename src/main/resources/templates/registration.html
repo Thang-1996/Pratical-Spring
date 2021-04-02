@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/frag :: head(title='Registration')"></head>
+    <body>
+        <div class="container">
+            <form method="POST" th:action="@{/registration}" th:object="${userForm}" class="form-signin">
+                <h2 class="form-signin-heading">Create your account</h2>
+                <div class="form-group row">
+                    <div class="col-6">
+                        <label>UserName</label>
+                        <input type="text" th:field="*{username}" class="form-control">
+                        <small class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></small>
+                    </div>
+                    <div class="col-6">
+                        <label>Password</label>
+                        <input type="password" th:field="*{password}" class="form-control">
+                        <small class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+                    </div>
+                    <div class="col-6">
+                        <label>Password Confirm</label>
+                        <input type="password" th:field="*{passwordConfirm}" class="form-control">
+                        <small class="text-danger" th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"></small>
+                    </div>
+                </div>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+            </form>
+
+        </div>
+        <div th:replace="layout/frag :: footer"></div>
+
+    </body>
+</html>

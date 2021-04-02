@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/frag :: head(title='Product Form')"></head>
+<body>
+<div th:replace="layout/frag :: header(title='Create Product')"></div>
+<div class="container-fluid row mt-2">
+    <div th:replace="layout/frag :: menu"></div>
+    <main class="col-10">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title float-left">
+                    Create product
+                    <small class="text-muted">Enter product information</small>
+                </h3>
+                <a href="/product/list" class="btn float-right"><i class="fas fa-list-ul"></i> List product</a>
+                <div class="clearfix"></div>
+                <hr>
+                <div class="alert alert-success d-none" role="alert" id="messageSuccess"></div>
+                <div class="alert alert-danger d-none" role="alert" id="messageError"></div>
+
+                <form th:action="@{/product/create}" th:object="${product}" method="POST"
+                      enctype="multipart/form-data">
+                    <input type="hidden" th:field="*{id}">
+                    <div class="form-group row">
+                        <div class="col-5">
+                            <label>Name</label>
+                            <input type="text" th:field="*{name}" class="form-control">
+                            <small class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-6">
+                            <label>Price</label>
+                            <input type="text" th:field="*{price}" class="form-control">
+                            <small class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-3">
+                            <label>Thumbnail</label>
+                            <input type="file" name="myFile" class="form-control">
+                            <small class="text-danger" th:if="${#fields.hasErrors('imgUrl')}" th:errors="*{myFile}"></small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Submit" class="btn btn-dark">
+                        <input type="reset" value="Reset" class="btn btn-dark">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+<div th:replace="layout/frag :: footer"></div>
+</body>
+</html>
+

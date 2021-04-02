@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/frag :: head(title='Login')"></head>
+<body>
+    <h1>login page</h1>
+    <form th:action="@{/login}"  method="post">
+        <input type="hidden" name="_csrf.parameterName" th:value="${_csrf.token}">
+        <input type="text" name="username">
+        <input type="text" name="password">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
